@@ -7,7 +7,6 @@ HuffmanTree_t::HuffmanTree_t()
 
 HuffmanTree_t::HuffmanTree_t(const char* str, int length)
 {
-    root = new Node_t();
     std::map<char, int> tree;
     for(int i = 0; i < length; i++)
     {
@@ -67,6 +66,16 @@ void HuffmanTree_t::emptyTree(Node_t* node)
         emptyTree(node -> rightChild);
     }
     delete node;
+}
+
+char encodeChar(char c)
+{
+
+}
+
+std::string HuffmanTree_t::serialize()
+{
+    return "";
 }
 
 Node_t::Node_t()

@@ -21,6 +21,9 @@ class HuffmanTree_t
     HuffmanTree_t();
     HuffmanTree_t(const char* str, int length);
     ~HuffmanTree_t();
+    char encodeChar(char c);
+    char decodeNext(const char* str);
+    std::string serialize();
     private:
     Node_t* root;
     void buildTree(const std::map<char, int>& values);
