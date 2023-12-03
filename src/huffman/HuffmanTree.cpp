@@ -68,9 +68,54 @@ void HuffmanTree_t::emptyTree(Node_t* node)
     delete node;
 }
 
-char HuffmanTree_t::encodeChar(char c)
+std::string HuffmanTree_t::encodeChar(char c)
 {
+    Node_t* node = root;
+    std::ostringstream oss;
+    while(node -> leftChild != nullptr)
+    {
+        if(charInString(c, node -> leftChild -> str))
+        {
+            oss << '0';
+            node = node -> leftChild;
+        }
+        else
+        {
+            oss << '1';
+            node = node -> rightChild;
+        }
+    }
+    return oss.str();
+}
 
+char HuffmanTree_t::decodeNext(std::istringstream& iss)
+{
+    Node_t* node = root;
+    while(node -> leftChild != nullptr)
+    {
+        char c = iss.get();
+        if(c == '1')
+        {
+            node = node -> rightChild;
+        }
+        else
+        {
+            node = node -> leftChild;
+        }
+    }
+    return node -> str[0];
+}
+
+bool HuffmanTree_t::charInString(char c, const std::string& str)
+{
+    for(int i = 0; i < str.length(); i++)
+    {
+        if(c == str[i])
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 NextDecoded_t HuffmanTree_t::decodeNext(const std::string& message)

@@ -28,7 +28,7 @@ class HuffmanTree_t
     HuffmanTree_t();
     HuffmanTree_t(const char* str, int length);
     ~HuffmanTree_t();
-    char encodeChar(char c);
+    std::string encodeChar(char c);
     NextDecoded_t decodeNext(const std::string& message);
     std::string serialize();
     void deserialize(const std::string& tree);
