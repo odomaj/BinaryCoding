@@ -68,7 +68,12 @@ void HuffmanTree_t::emptyTree(Node_t* node)
     delete node;
 }
 
-char encodeChar(char c)
+char HuffmanTree_t::encodeChar(char c)
+{
+
+}
+
+NextDecoded_t HuffmanTree_t::decodeNext(const std::string& message)
 {
 
 }
@@ -76,6 +81,11 @@ char encodeChar(char c)
 std::string HuffmanTree_t::serialize()
 {
     return "";
+}
+
+void HuffmanTree_t::deserialize(const std::string& tree)
+{
+
 }
 
 Node_t::Node_t()

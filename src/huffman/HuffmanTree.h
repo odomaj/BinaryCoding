@@ -15,6 +15,13 @@ struct Node_t
     Node_t(const char* str_, int frequency_);
 };
 
+typedef struct
+{
+    char c;
+    int length;
+} NextDecoded_t;
+
+
 class HuffmanTree_t
 {
     public:
@@ -22,8 +29,9 @@ class HuffmanTree_t
     HuffmanTree_t(const char* str, int length);
     ~HuffmanTree_t();
     char encodeChar(char c);
-    char decodeNext(const char* str);
+    NextDecoded_t decodeNext(const std::string& message);
     std::string serialize();
+    void deserialize(const std::string& tree);
     private:
     Node_t* root;
     void buildTree(const std::map<char, int>& values);
