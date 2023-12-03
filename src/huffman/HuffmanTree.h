@@ -13,7 +13,7 @@ struct Node_t
     std::string str;
     int frequency;
     Node_t();
-    Node_t(const char* str_, int frequency_);
+    Node_t(const std::string& str_, int frequency_);
 };
 
 class HuffmanTree_t
@@ -27,11 +27,14 @@ class HuffmanTree_t
     std::string serialize();
     void deserialize(const std::string& tree);
     private:
-    Node_t* root;
+    std::map<char, std::string> charToStr;
+    std::map<std::string, char> strToChar;
     void buildTree(const std::map<char, int>& values);
     void emptyTree(Node_t* node);
-    bool charInString(char c, const std::string& str);
-    void findKeys(Node_t* node, std::string value, std::map<char, std::string>& keys);
+    void fillMaps(Node_t* node, std::string value);
+    std::string writeEscape(char c);
+    char readEscape(std::string str);
+    
 };
 
 #endif

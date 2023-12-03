@@ -22,6 +22,8 @@ int main()
     */
 
    Huffman huffman;
-   HuffmanOutpuf_t output = huffman.encode("testing message");
-   std::cout << output.message;
+   HuffmanOutpuf_t output = huffman.encode("testing \nmessage");
+   std::cout << output.message << '\n';
+   std::cout << output.serializedTree;
+   std::cout << huffman.decode(output);
 }
