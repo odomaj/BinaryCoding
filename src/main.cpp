@@ -1,4 +1,4 @@
-//#include "huffman/HuffMan.h"
+#include "huffman/HuffMan.h"
 #include "jabberwocky/JabberWocky.h"
 #include "io/IO.h"
 
@@ -6,6 +6,7 @@
 
 int main()
 {
+    /*
     JabberWocky jabberwocky = JabberWocky();
     std::string test = "test";
     test = jabberwocky.strToBits(test);
@@ -18,4 +19,9 @@ int main()
     std::cout << test << '\n';
     std::cout << jabberwocky.wocky(test);
     return 0;
+    */
+
+   Huffman huffman;
+   HuffmanOutpuf_t output = huffman.encode("testing message");
+   std::cout << output.message;
 }

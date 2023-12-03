@@ -22,7 +22,7 @@ std::string Huffman::decode(const HuffmanOutpuf_t& data)
     return decode(data.message, tree);
 }
 
-std::string Huffman::encode(const std::string& message, const HuffmanTree_t& tree)
+std::string Huffman::encode(const std::string& message, HuffmanTree_t& tree)
 {
     std::ostringstream oss;
     for(int i = 0; i < message.length(); i++)
@@ -32,15 +32,20 @@ std::string Huffman::encode(const std::string& message, const HuffmanTree_t& tre
     return oss.str();
 }
 
-std::string Huffman::decode(const std::string& message, const HuffmanTree_t& tree)
+std::string Huffman::decode(const std::string& message, HuffmanTree_t& tree)
 {
-    int i = 0;
     std::ostringstream oss;
-    while(i < message.length())
+    std::istringstream iss;
+    iss.str(message);
+    while(!iss.str().empty())
     {
-        NextDecoded_t next = tree.decodeNext(message.substr(i));
-        i += next.length;
-        oss << next.c;
+        char c;
+        c = tree.decodeNext(iss);
+        oss << c;
+        if(iss.fail())
+        {
+            break;
+        }
     }
     return oss.str();
 }

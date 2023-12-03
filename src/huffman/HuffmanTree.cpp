@@ -91,7 +91,7 @@ std::string HuffmanTree_t::encodeChar(char c)
 char HuffmanTree_t::decodeNext(std::istringstream& iss)
 {
     Node_t* node = root;
-    while(node -> leftChild != nullptr)
+    while(node -> leftChild != nullptr && !iss.fail())
     {
         char c = iss.get();
         if(c == '1')
@@ -118,19 +118,54 @@ bool HuffmanTree_t::charInString(char c, const std::string& str)
     return false;
 }
 
-NextDecoded_t HuffmanTree_t::decodeNext(const std::string& message)
-{
-
-}
-
 std::string HuffmanTree_t::serialize()
 {
-    return "";
+    std::ostringstream oss;
+    std::map<char, std::string> keys;
+    findKeys(root, "", keys);
+    for(auto it = keys.begin(); it != keys.end(); it++)
+    {
+        oss << '[' << it -> first << "] -- " << it -> second << '\n';
+    }
+    return oss.str();
 }
 
 void HuffmanTree_t::deserialize(const std::string& tree)
 {
+    std::istringstream iss;
+    std::map<char, std::string> keys;
+    while(!iss.fail())
+    {
+        if(iss.str().empty())
+        {
+            return;
+        }
+        std::string str;
+        iss >> str;
+        if(str[0] != '[' || str[str.length() - 1] != ']')
+        {
+            return;
+        }
+        char key = str[1];
+        iss >> str;
+        iss >> str;
+        keys.insert({key, str});
+    }
+}
 
+void HuffmanTree_t::findKeys(Node_t* node, std::string value, std::map<char, std::string>& keys)
+{
+    if(node == nullptr)
+    {
+        return;
+    }
+    if((node -> str).length() == 1)
+    {
+        keys.insert({(node -> str)[0], value});
+        return;
+    }
+    findKeys(node -> leftChild, value + '0', keys);
+    findKeys(node -> rightChild, value + '1', keys);
 }
 
 Node_t::Node_t()

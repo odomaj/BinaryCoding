@@ -19,8 +19,8 @@ class Huffman
     std::string decode(const HuffmanOutpuf_t& data);
     private:
     HuffmanTree_t tree;
-    std::string encode(const std::string& message, const HuffmanTree_t& tree);
-    std::string decode(const std::string& bits, const HuffmanTree_t& tree);
+    std::string encode(const std::string& message, HuffmanTree_t& tree);
+    std::string decode(const std::string& bits, HuffmanTree_t& tree);
 };
 
 #endif
