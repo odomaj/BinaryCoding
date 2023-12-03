@@ -2,7 +2,6 @@
 
 #include <queue>
 
-#include <iostream>
 HuffmanTree_t::HuffmanTree_t(){}
 
 HuffmanTree_t::HuffmanTree_t(const char* str, int length)
@@ -192,7 +191,6 @@ std::string HuffmanTree_t::writeEscape(char c)
 
 char HuffmanTree_t::readEscape(std::string str)
 {
-    std::cout << str << '\n';
     if(str[0] != '\\')
     {
         return str[0];

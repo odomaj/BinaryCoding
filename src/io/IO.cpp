@@ -21,8 +21,8 @@ std::string IO::read(const std::string& filename)
     std::string str;
     while(!std::getline(in, str).fail())
     {
-        oss << str;
+        oss << str << '\n';
     }
     in.close();
-    return oss.str();
+    return oss.str().substr(0, oss.str().length()-1);
 }
